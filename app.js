@@ -373,16 +373,30 @@ const CAT_ICONS = {
 let activeCategory = "all";
 let searchQuery = "";
 
+function normalize(s) {
+  return s.toLowerCase()
+    .replace(/ı/g,"i").replace(/İ/g,"i")
+    .replace(/ş/g,"s").replace(/Ş/g,"s")
+    .replace(/ğ/g,"g").replace(/Ğ/g,"g")
+    .replace(/ü/g,"u").replace(/Ü/g,"u")
+    .replace(/ö/g,"o").replace(/Ö/g,"o")
+    .replace(/ç/g,"c").replace(/Ç/g,"c");
+}
+
+function matchesQuery(d, q) {
+  if (!q) return true;
+  const words = normalize(q).split(/\s+/).filter(Boolean);
+  const haystack = normalize(
+    d.name + " " + d.keywords.join(" ") + " " + d.meaning + " " + d.detail
+  );
+  return words.some(w => haystack.includes(w));
+}
+
 function renderGrid() {
   const grid = document.getElementById("dream-grid");
   let filtered = DREAMS.filter(d => {
     const catMatch = activeCategory === "all" || d.category === activeCategory;
-    const q = searchQuery.toLowerCase();
-    const textMatch = !q ||
-      d.name.toLowerCase().includes(q) ||
-      d.keywords.some(k => k.toLowerCase().includes(q)) ||
-      d.meaning.toLowerCase().includes(q);
-    return catMatch && textMatch;
+    return catMatch && matchesQuery(d, searchQuery);
   });
 
   if (filtered.length === 0) {
