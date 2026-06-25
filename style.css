@@ -1,0 +1,303 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #06061a;
+  --bg2: #0c0c28;
+  --bg3: #12122e;
+  --accent: #b088e8;
+  --accent2: #7eb8e8;
+  --gold: #e8c97a;
+  --text: #e0d8f0;
+  --text-dim: #8880a8;
+  --border: rgba(176, 136, 232, 0.18);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, 'Times New Roman', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Stars */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: 0.1; }
+  to   { opacity: 0.8; }
+}
+
+/* Header */
+.site-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 56px 20px 32px;
+}
+.header-inner { max-width: 680px; margin: 0 auto; }
+
+.logo {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-shadow: 0 0 40px rgba(176, 136, 232, 0.5);
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  font-style: italic;
+}
+
+/* Main */
+.main-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* Search */
+.search-wrap {
+  margin: 0 auto 32px;
+  max-width: 600px;
+}
+.search-input {
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-input::placeholder { color: var(--text-dim); }
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(176, 136, 232, 0.15);
+}
+
+/* Category filters */
+.cat-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.cat-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.cat-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.cat-btn.active {
+  background: rgba(176, 136, 232, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Dream grid */
+.dream-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.dream-card {
+  display: block;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.dream-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(176, 136, 232, 0.18);
+}
+
+.dream-card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+.dream-card-name {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.dream-card-cat {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.dream-card-meaning {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-dim);
+  padding: 60px 20px;
+  font-style: italic;
+}
+
+/* Footer */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+/* â”€â”€ Individual dream page styles â”€â”€ */
+.dream-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.back-link {
+  display: inline-block;
+  margin: 32px 0 40px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+
+.dream-hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.dream-hero-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.dream-title {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-weight: normal;
+  text-shadow: 0 0 30px rgba(176, 136, 232, 0.4);
+}
+.dream-category-badge {
+  display: inline-block;
+  padding: 5px 16px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+.dream-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.dream-keyword {
+  background: rgba(176, 136, 232, 0.1);
+  border: 1px solid rgba(176, 136, 232, 0.2);
+  border-radius: 50px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  color: var(--accent);
+}
+
+.dream-section {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 20px;
+}
+.dream-section-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.dream-section-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+.dream-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+.dream-cta a {
+  display: inline-block;
+  padding: 14px 36px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 50px;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  transition: all 0.25s;
+}
+.dream-cta a:hover {
+  background: rgba(176, 136, 232, 0.12);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .dream-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .dream-card { padding: 18px 14px; }
+  .cat-filters { gap: 7px; }
+  .cat-btn { padding: 7px 14px; font-size: 0.82rem; }
+}
